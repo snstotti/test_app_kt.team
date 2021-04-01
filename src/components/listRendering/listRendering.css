@@ -1,0 +1,6 @@
+.iconEdit{
+    display: none;
+}
+.listItem :hover .iconEdit{
+    display: block;
+}
