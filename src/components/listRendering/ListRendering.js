@@ -3,7 +3,7 @@ import './listRendering.css'
 import { SetEdit } from "./Setedit";
 
 
-const ListRendering = (list) => {
+const ListRendering = ({list}) => {
 
     
    return list.map((el,i) => {
@@ -14,7 +14,8 @@ const ListRendering = (list) => {
                         index={i}
                         params={el.isEdit}
                         id={el.id}
-                        task={el.item} />
+                        task={el.item}
+                        num={i + 1} />
                 </div>
             </div>
         )

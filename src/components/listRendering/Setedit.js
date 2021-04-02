@@ -6,7 +6,7 @@ import { removeTask,onEdit} from '../../redux/reducer/taskReduser';
 import EditInput from './EditInput';
 
 
-export const SetEdit = ({params,id,task,index}) => {
+export const SetEdit = ({params,id,task,index,num}) => {
 
     const dispatch = useDispatch()
 
@@ -22,7 +22,7 @@ export const SetEdit = ({params,id,task,index}) => {
        
     return (
         <div className="p-2 m-1 border bg-light d-flex justify-content-between">
-            {index + 1}{')'} {task}
+            {num}{')'} {task}
             <div className="iconEdit" >
                 <img
                     src={pencil}

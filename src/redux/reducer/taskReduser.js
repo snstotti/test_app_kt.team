@@ -11,11 +11,12 @@ const REVERSE_LIST_TASK = 'REVERSE_LIST_TASK'
 const defaultState = {
     entryField:'',
     searchFiled: '',
+    isReversArr: false,
     taskList: [
-        {item:'krkrkrk',id:1,isEdit:false},
-        {item:'zaasa',id:2,isEdit:false},
-        {item:'asasas',id:3,isEdit:false},
-        {item:'asasasgg',id:4,isEdit:false},
+        {item:'krkrkrk',id:1,isEdit:false,numTask:1},
+        {item:'zaasa',id:2,isEdit:false,numTask:2},
+        {item:'asasas',id:3,isEdit:false,numTask:3},
+        {item:'asasasgg',id:4,isEdit:false,numTask:4},
     ],
     searchShowNews:[],
     
@@ -29,7 +30,8 @@ export default function taskReduser (state=defaultState, action){
             let newTask={
                 item:action.task,
                 id: action.newId,
-                isEdit:false
+                isEdit:false,
+                
             }    
 
             return {
@@ -83,8 +85,12 @@ export default function taskReduser (state=defaultState, action){
             return {...state, searchShowNews: newArr}
             
         case REVERSE_LIST_TASK:
-            return {...state, taskList: state.taskList.reverse()}
-        
+            return {
+                ...state,
+                isReversArr: action.isReverse
+                , taskList: state.taskList.reverse()
+            }
+
         default:
             return state
     }
@@ -99,5 +105,5 @@ export const onEdit =(id)=>({type:ON_EDIT,id})
 export const editTextTask =(editText,editItemId)=>({type:EDIT_TEXT_TASK,editText,editItemId})
 export const filterText =(searchText)=>({type:FILTER_TEXT,searchText})
 export const filterTask =(even)=>({type:FILTER_TASK,even})
-export const reverseList =()=>({type:REVERSE_LIST_TASK})
+export const reverseList =(isReverse)=>({type:REVERSE_LIST_TASK,isReverse})
 

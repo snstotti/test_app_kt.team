@@ -1,25 +1,16 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { filterTask,filterText } from '../../redux/reducer/taskReduser'
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { filterText } from '../../redux/reducer/taskReduser'
 
-const SearchInput = () => {
+const SearchInput = ({searchFiled}) => {
 
-    
     const dispatch = useDispatch()
-    const searchFiled = useSelector(state => state.taskStore.searchFiled)
 
     const searchHandleInput=(e)=>{
         let partOfText = e.target.value
         dispatch(filterText(partOfText))
     }
         
-    useEffect(() => {
-        dispatch(filterTask(searchFiled))
-    }, [dispatch,searchFiled])
-
-   
-    
-
     return (
             <div className="input-group mt-2 ">
                 <input
