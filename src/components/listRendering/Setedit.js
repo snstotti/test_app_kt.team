@@ -22,7 +22,7 @@ export const SetEdit = ({params,id,task,index,num}) => {
        
     return (
         <div className="p-2 m-1 border bg-light d-flex justify-content-between">
-            {num}{')'} {task}
+            {task}
             <div className="iconEdit" >
                 <img
                     src={pencil}

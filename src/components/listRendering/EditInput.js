@@ -7,9 +7,10 @@ const EditInput = ({idItem,task}) => {
 
     const dispatch = useDispatch()
 
-    const openEdit=(e,id)=>{
+    const openEdit=(e,task,idItem)=>{
         if(!task){return e.preventDefault()}
-        dispatch(onEdit(id))
+        dispatch(onEdit(idItem))
+        e.preventDefault()
     }
     const taskEditHandler =(e,idItem)=>{
         let text = e.target.value

@@ -7,6 +7,8 @@ const EDIT_TEXT_TASK = 'EDIT_TEXT_TASK'
 const FILTER_TASK = 'FILTER_TASK' 
 const FILTER_TEXT = 'FILTER_TEXT' 
 const REVERSE_LIST_TASK = 'REVERSE_LIST_TASK' 
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE' 
+const SET_HANDLER_PAGE = 'SET_HANDLER_PAGE' 
 
 const defaultState = {
     entryField:'',
@@ -17,8 +19,17 @@ const defaultState = {
         {item:'zaasa',id:2,isEdit:false,numTask:2},
         {item:'asasas',id:3,isEdit:false,numTask:3},
         {item:'asasasgg',id:4,isEdit:false,numTask:4},
+        {item:'krkrkrk',id:5,isEdit:false,numTask:1},
+        {item:'zaasa',id:6,isEdit:false,numTask:2},
+        {item:'asasas',id:7,isEdit:false,numTask:3},
+        {item:'asasasgg',id:8,isEdit:false,numTask:4},
+        {item:'krkrkrk',id:9,isEdit:false,numTask:1},
+        {item:'zaasa',id:10,isEdit:false,numTask:2},
+        {item:'asasas',id:11,isEdit:false,numTask:3},
+        {item:'asasasgg',id:12,isEdit:false,numTask:4},
     ],
     searchShowNews:[],
+    currentPage: 1
     
 }
 
@@ -90,6 +101,16 @@ export default function taskReduser (state=defaultState, action){
                 isReversArr: action.isReverse
                 , taskList: state.taskList.reverse()
             }
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage:action.page
+            }
+        case SET_HANDLER_PAGE:
+            return {
+                ...state,
+                currentPage:action.handlerPage
+            }
 
         default:
             return state
@@ -106,4 +127,6 @@ export const editTextTask =(editText,editItemId)=>({type:EDIT_TEXT_TASK,editText
 export const filterText =(searchText)=>({type:FILTER_TEXT,searchText})
 export const filterTask =(even)=>({type:FILTER_TASK,even})
 export const reverseList =(isReverse)=>({type:REVERSE_LIST_TASK,isReverse})
+export const setCurrentPage =(page)=>({type:SET_CURRENT_PAGE,page})
+export const setHandlerPage =(handlerPage)=>({type:SET_HANDLER_PAGE,handlerPage})
 

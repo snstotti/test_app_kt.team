@@ -4,6 +4,7 @@ import { addTask, setText, reverseList, filterTask } from './redux/reducer/taskR
 import ListRendering from './components/listRendering/ListRendering';
 import ReverseButton from './components/reversButton/ReverseButton';
 import SearchInput from './components/searchInput/SearchInput';
+import Pagination from './components/pagination/Pagination';
 import {  useEffect } from 'react';
 
 
@@ -11,13 +12,19 @@ function App() {
 
   const dispatch = useDispatch()
   const list = useSelector(state => state.taskStore.taskList)
+  const currentPage = useSelector(state => state.taskStore.currentPage)
   const isReverse = useSelector(state => state.taskStore.isReversArr)
   const searchFiled = useSelector(state => state.taskStore.searchFiled)
   const listFilter = useSelector(state => state.taskStore.searchShowNews)
   const filed = useSelector(state => state.taskStore.entryField)
 
   let newId = Date.now()
+  let numberTasksPerPage = 1
+  let pagesCount = Math.ceil(list.length / numberTasksPerPage)
 
+  
+
+  
 
   const setClickTask = (e, newTask, id) => {
     if (!newTask) { return e.preventDefault() }
@@ -59,12 +66,19 @@ function App() {
 
         </div>
 
-        <ListRendering list={listTask} />
+        <ListRendering
+          list={listTask}
+          currentPage={currentPage}
+          pagesCount={pagesCount}
+          numberTasksPerPage={numberTasksPerPage} />
 
-
+        <Pagination 
+          currentPage={currentPage}
+          pagesCount={pagesCount}
+           />
       </div>
 
-
+      
     </div>
   )
 }

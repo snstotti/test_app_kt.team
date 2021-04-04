@@ -3,10 +3,18 @@ import './listRendering.css'
 import { SetEdit } from "./Setedit";
 
 
-const ListRendering = ({list}) => {
+const ListRendering = ({list,currentPage,numberTasksPerPage}) => {
 
     
-   return list.map((el,i) => {
+    
+    let start = (currentPage - 1 ) * numberTasksPerPage
+    let end = start + numberTasksPerPage
+  
+    
+
+    let newTaskList = list.slice(start,end)
+    
+   return newTaskList.map((el,i) => {
         return (
             <div className="row gx-5 listItem " key={el.id}>
                 <div className="col">
