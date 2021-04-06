@@ -7,11 +7,11 @@ import SearchInput from './components/searchInput/SearchInput';
 import Pagination from './components/pagination/Pagination';
 import {  useEffect } from 'react';
 
-
 function App() {
 
   const dispatch = useDispatch()
   const list = useSelector(state => state.taskStore.taskList)
+  
   const currentPage = useSelector(state => state.taskStore.currentPage)
   const isReverse = useSelector(state => state.taskStore.isReversArr)
   const searchFiled = useSelector(state => state.taskStore.searchFiled)
@@ -19,7 +19,7 @@ function App() {
   const filed = useSelector(state => state.taskStore.entryField)
 
   let newId = Date.now()
-  let numberTasksPerPage = 1
+  let numberTasksPerPage = 10
   let pagesCount = Math.ceil(list.length / numberTasksPerPage)
 
   

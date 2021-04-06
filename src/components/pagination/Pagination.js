@@ -28,13 +28,13 @@ const Pagination =({pagesCount,currentPage})=>{
   
 
   let paginationPage = pages.map(el=>{
-    let activeClass = currentPage === el+1 ? 'page-link' : 'page-link active'
+    let activeClass = currentPage === el+1 ? 'page-item active' : 'page-item'
     return (
       <li
         onClick={(e)=>getCurrentPage(e,el + 1)}
         key={el}
-        className="page-item">
-        <a className={activeClass} href={`/${el + 1}`}>{el + 1}</a>
+        className={activeClass}>
+        <a className= "page-link" href={`/${el + 1}`}>{el + 1}</a>
       </li>
    )
   })

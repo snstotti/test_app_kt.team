@@ -9,24 +9,25 @@ const FILTER_TEXT = 'FILTER_TEXT'
 const REVERSE_LIST_TASK = 'REVERSE_LIST_TASK' 
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE' 
 const SET_HANDLER_PAGE = 'SET_HANDLER_PAGE' 
+const SET_COMPLETED = 'SET_COMPLETED' 
 
 const defaultState = {
     entryField:'',
     searchFiled: '',
     isReversArr: false,
     taskList: [
-        {item:'krkrkrk',id:1,isEdit:false,numTask:1},
-        {item:'zaasa',id:2,isEdit:false,numTask:2},
-        {item:'asasas',id:3,isEdit:false,numTask:3},
-        {item:'asasasgg',id:4,isEdit:false,numTask:4},
-        {item:'krkrkrk',id:5,isEdit:false,numTask:1},
-        {item:'zaasa',id:6,isEdit:false,numTask:2},
-        {item:'asasas',id:7,isEdit:false,numTask:3},
-        {item:'asasasgg',id:8,isEdit:false,numTask:4},
-        {item:'krkrkrk',id:9,isEdit:false,numTask:1},
-        {item:'zaasa',id:10,isEdit:false,numTask:2},
-        {item:'asasas',id:11,isEdit:false,numTask:3},
-        {item:'asasasgg',id:12,isEdit:false,numTask:4},
+        {item:'task1',id:1,isEdit:false,completed:false},
+        {item:'task2',id:2,isEdit:false,completed:false},
+        {item:'task3',id:3,isEdit:false,completed:false},
+        {item:'task4',id:4,isEdit:false,completed:false},
+        {item:'task5',id:5,isEdit:false,completed:false},
+        {item:'task6',id:6,isEdit:false,completed:false},
+        {item:'task7',id:7,isEdit:false,completed:false},
+        {item:'task8',id:8,isEdit:false,completed:false},
+        {item:'task9',id:9,isEdit:false,completed:false},
+        {item:'task10',id:10,isEdit:false,completed:false},
+        {item:'task11',id:11,isEdit:false,completed:false},
+        {item:'task12',id:12,isEdit:false,completed:false},
     ],
     searchShowNews:[],
     currentPage: 1
@@ -42,12 +43,12 @@ export default function taskReduser (state=defaultState, action){
                 item:action.task,
                 id: action.newId,
                 isEdit:false,
-                
+                completed:false
             }    
 
             return {
                 ...state, 
-                taskList: [...state.taskList,  newTask]
+                taskList: [newTask, ...state.taskList]
             }
         case EDIT_TEXT_TASK:
             return {
@@ -106,6 +107,16 @@ export default function taskReduser (state=defaultState, action){
                 ...state,
                 currentPage:action.page
             }
+        case SET_COMPLETED:
+            return {
+                ...state, 
+                taskList: state.taskList.map(el=>{
+                    if(el.id === action.id){
+                      el.completed = action.completed
+                    }
+                    return el
+                })
+            }
         case SET_HANDLER_PAGE:
             return {
                 ...state,
@@ -129,4 +140,5 @@ export const filterTask =(even)=>({type:FILTER_TASK,even})
 export const reverseList =(isReverse)=>({type:REVERSE_LIST_TASK,isReverse})
 export const setCurrentPage =(page)=>({type:SET_CURRENT_PAGE,page})
 export const setHandlerPage =(handlerPage)=>({type:SET_HANDLER_PAGE,handlerPage})
+export const setCompleted =(completed,id)=>({type:SET_COMPLETED,completed,id})
 

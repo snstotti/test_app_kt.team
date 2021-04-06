@@ -23,7 +23,8 @@ const ListRendering = ({list,currentPage,numberTasksPerPage}) => {
                         params={el.isEdit}
                         id={el.id}
                         task={el.item}
-                        num={i + 1} />
+                        num={i + 1}
+                        completed={el.completed} />
                 </div>
             </div>
         )
